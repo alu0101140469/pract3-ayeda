@@ -171,3 +171,47 @@ int main(int argc, char* argv[]) {
     }
     return 0;
 }
+
+// Función auxiliar que compara dos BigNumber y muestra en consola:
+// - El número menor
+// - El número mayor
+// - La resta (mayor − menor)
+// Se asume que ambos números son del mismo tipo (misma base) y se convierten a BigInteger
+// para realizar comparaciones y operaciones aritméticas con signo.
+template <unsigned char Base>
+void compareAndSubtract(const BigNumber<Base>& num1, const BigNumber<Base>& num2) {
+    // Convertir ambos números a BigInteger usando el operador de conversión definido.
+    // Esto permite trabajar con los valores con signo.
+    BigInteger<Base> a = num1;
+    BigInteger<Base> b = num2;
+
+    // Obtener el valor decimal de cada número mediante el método to_decimal().
+    // Este valor se utiliza para realizar la comparación.
+    unsigned long long decA = a.to_decimal();
+    unsigned long long decB = b.to_decimal();
+
+    // Imprimir ambos números
+    std::cout << "Número 1: " << a << std::endl;
+    std::cout << "Número 2: " << b << std::endl;
+
+    // Comparar los valores decimales para determinar cuál es menor y cuál mayor
+    if (decA < decB) {
+        // Si a es menor que b
+        std::cout << "El menor es: " << a << std::endl;
+        std::cout << "El mayor es: " << b << std::endl;
+        // Calcular la diferencia: mayor - menor
+        BigInteger<Base> diff = b - a;
+        std::cout << "Resta (mayor - menor): " << diff << std::endl;
+    } else if (decB < decA) {
+        // Si b es menor que a
+        std::cout << "El menor es: " << b << std::endl;
+        std::cout << "El mayor es: " << a << std::endl;
+        // Calcular la diferencia: mayor - menor
+        BigInteger<Base> diff = a - b;
+        std::cout << "Resta (mayor - menor): " << diff << std::endl;
+    } else {
+        // Si ambos números son iguales
+        std::cout << "Ambos números son iguales: " << a << std::endl;
+        std::cout << "Resta: 0" << std::endl;
+    }
+}

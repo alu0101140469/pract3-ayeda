@@ -173,29 +173,29 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-Template <unsigned char Base>
-void compareAndSubtract(const BigNumber<Base>& num1, const BigNumber<Base>& num2) {
+template <unsigned char Base>
+void modif(const BigNumber<Base>& num1, const BigNumber<Base>& num2) {
     BigInteger<Base> a = num1;
     BigInteger<Base> b = num2;
 
-    unsigned long long decA = a.to_decimal();
-    unsigned long long decB = b.to_decimal();
+    unsigned long long compA = a.to_decimal();
+    unsigned long long compB = b.to_decimal();
 
     std::cout << "Número 1: " << a << std::endl;
     std::cout << "Número 2: " << b << std::endl;
 
-    if (decA < decB) {
+    if (compA < compB) {
         std::cout << "El menor es: " << a << std::endl;
         std::cout << "El mayor es: " << b << std::endl;
-        BigInteger<Base> diff = b - a;
-        std::cout << "Resta (mayor - menor): " << diff << std::endl;
-    } else if (decB < decA) {
+        BigInteger<Base> diferencia = b - a;
+        std::cout << "Resta (mayor - menor): " << diferencia << std::endl;
+    } else if (compB < compA) {
         std::cout << "El menor es: " << b << std::endl;
         std::cout << "El mayor es: " << a << std::endl;
-        BigInteger<Base> diff = a - b;
-        std::cout << "Resta (mayor - menor): " << diff << std::endl;
+        BigInteger<Base> diferencia = a - b;
+        std::cout << "Resta (mayor - menor): " << diferencia << std::endl;
     } else {
         std::cout << "Ambos números son iguales: " << a << std::endl;
         std::cout << "Resta: 0" << std::endl;
     }
-    }
+}
